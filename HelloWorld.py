@@ -1,3 +1,7 @@
+# HelloWorld
+# Version added to GitHub
+# Author Darrell Little
+# Date: 02/22/2015
 import sys
 k = "Hello"
 y = "World"
