@@ -1,8 +1,12 @@
+# single_led_blink.py
+# Author: Darrell Little
+# Version: 0.1
+# Date: 02/28/2015
 # This simple program sets up GPIO pin 11 as OUT 3.3V
 # Then inside a loop, turns on GPIO pin 11 (True)
 # Waits 1 second and turns off GPIO pin 11 (False)
-# To run the program, type sudo python single_led_blink.py
 # Since the GPIO requires Admin permission, you have to use sudo
+# To run the program, type sudo python single_led_blink.py
 # To stop the program, type Control-C
 import RPi.GPIO as GPIO
 import time
