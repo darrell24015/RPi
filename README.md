@@ -14,9 +14,27 @@ $ sudo nano /boot/config.txt
 - Add this line to the end of the file
 
 ```sh
-dtparam=i2c1=on
+dtparam=i2c_arm=on
 ```
 - Reboot
+
+##### Addendum
+
+The same change can be made using the Raspberry Pi Software Configuration Tool
+
+```sh
+$ sudo raspi-config
+```
+
+- Select Advanded Options
+- Select I2C Enable/Disable Option
+- Say "Yes" to Enable I2C and to Load the I2C Kernel Module
+- Select Finish
+- Reboot
+
+```sh
+$ sudo shutdown -r now
+```
 
 Full explanation on how Device Tree is used to manage resources and module loading
 can be found in the [Raspberry Pi Documentation]
