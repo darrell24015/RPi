@@ -1,0 +1,4 @@
+My experiments with programming in Python for the Pimoroni PiGlow
+
+Tutorials at:
+http://www.raspberrypi.org/learning/piglow/worksheet/

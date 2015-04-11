@@ -1,9 +1,13 @@
+# six_led_blink.py
+# Author: Darrell Little
+# Version: 0.1
+# Date: 02/28/2015
 # This simple program sets up GPIO pins 11,13,15, 16, 18 and 22 as OUT 3.3V
 # Then inside a loop, turns on GPIO pin 11 (True)
 # Waits and turns off GPIO pin 11 (False)
-# Repeat with different sleep times for the other five pins
-# To run the program, type sudo python six_led_blink.py
+# Repeat for the other five pins
 # Since the GPIO requires Admin permission, you have to use sudo
+# To run the program, type sudo python six_led_blink.py
 # To stop the program, type Control-C
 
 import RPi.GPIO as GPIO
