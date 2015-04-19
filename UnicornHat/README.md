@@ -1,5 +1,11 @@
-Unicorn HAT Examples
+###Unicorn HAT Examples
 ====================
+
+These files are copied from: https://github.com/pimoroni/unicorn-hat
+For instructions on how to install the libraries required and the most
+current files, please visit Pimoroni's repository at the above link.
+
+Note: some of these files may be modified from the original 
 
 By virture of the Unicorn HAT being a HAT(!), and hence using the Raspberry Pi's GPIO pins, all of these examples must be run with `sudo`, for example
 
@@ -51,15 +57,6 @@ random_sparkles.py
 
 Random multi-coloured sparkles.
 
-
-unicornpaint/paint.py
----------------------
-
-Use your web browser to pixel paint onto Unicorn HAT.
-
-**Requirements:**
-
-    sudo pip install flask
 
 
 show_png.py
