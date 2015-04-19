@@ -1,7 +1,8 @@
-###Unicorn HAT Examples
+Unicorn HAT Examples
 ====================
 
 These files are copied from: https://github.com/pimoroni/unicorn-hat
+
 For instructions on how to install the libraries required and the most
 current files, please visit Pimoroni's repository at the above link.
 
