@@ -20,7 +20,25 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+from time import sleep
 import Adafruit_DHT
+import sys
+
+def countdown(t): # in minutes
+    for i in range(t,0,-1):
+        print 'Values sent, now sleeping for %d minutes\r' % i,
+        sys.stdout.flush()
+        sleep(60)
+
+# Import Ubidots API, create objects
+from ubidots import ApiClient
+
+#Create an API object
+api = ApiClient("f4a44b0bbbfdc25207c5841ba91ada2c2bc9235c")
+
+#Create Variable objects - Humidity and Temperature
+humidity_value = api.get_variable("555a4777762542487814e5a6")
+temperature_value = api.get_variable("555a47c07625424af45b924e")
 
 # Sensor should be set to Adafruit_DHT.DHT11,
 # Adafruit_DHT.DHT22, or Adafruit_DHT.AM2302.
@@ -42,9 +60,23 @@ humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
 # the results will be null (because Linux can't
 # guarantee the timing of calls to read the sensor).  
 # If this happens try again!
-if humidity is not None and temperature is not None:
-	convertCtoF = (9.0/5.0 * temperature + 32)
-	print 'Temp= {0:0.1f}*C  Humidity= {1:0.1f}%'.format(temperature, humidity)
-	print 'Converted Temp= {0:0.1f}*F'.format(convertCtoF)
+
+#Put measurements in a loop, wait 900 seconds (15 minutes) between sending data
+while humidity is not None:
+	if humidity is not None and temperature is not None:
+		convertCtoF = (9.0/5.0 * temperature + 32)
+		print '\r\nTemp= {0:0.1f}*C  Humidity= {1:0.1f}%'.format(temperature, humidity)
+		print 'Converted Temp= {0:0.1f}*F'.format(convertCtoF)
+		send_temp = round(convertCtoF,1)
+		send_humi = round(humidity,1)
+		print 'Sending temperature to Ubidots: ',send_temp
+		print 'Sending humidity to Ubidots: ',send_humi
+		#Send the values to Ubidots
+		humidity_value.save_value({'value':send_humi})
+		temperature_value.save_value({'value':send_temp})
+	else:
+		print '\r\nFailed to get both readings! Will try again.'
+	#sleep(900)
+	countdown(5)
 else:
-	print 'Failed to get reading. Try again!'
+	print '\r\nSensor malfunction. Stopping program!'
