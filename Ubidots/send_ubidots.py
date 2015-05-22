@@ -63,6 +63,7 @@ humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
 
 #Put measurements in a loop, wait 900 seconds (15 minutes) between sending data
 while humidity is not None:
+	humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
 	if humidity is not None and temperature is not None:
 		convertCtoF = (9.0/5.0 * temperature + 32)
 		print '\r\nTemp= {0:0.1f}*C  Humidity= {1:0.1f}%'.format(temperature, humidity)
@@ -77,6 +78,6 @@ while humidity is not None:
 	else:
 		print '\r\nFailed to get both readings! Will try again.'
 	#sleep(900)
-	countdown(5)
+	countdown(15)
 else:
 	print '\r\nSensor malfunction. Stopping program!'
