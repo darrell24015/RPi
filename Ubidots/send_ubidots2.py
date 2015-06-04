@@ -38,12 +38,12 @@ api = ApiClient("f4a44b0bbbfdc25207c5841ba91ada2c2bc9235c")
 
 #Create Variable objects - Humidity and Temperature
 #Edit these variables according to the room being measured
-humidity_value = api.get_variable("555a4777762542487814e5a6")
-temperature_value = api.get_variable("555a47c07625424af45b924e")
+humidity_value = api.get_variable("556fc7e87625424f342b54aa")
+temperature_value = api.get_variable("556fc7c7762542539017edc3")
 
 # Sensor should be set to Adafruit_DHT.DHT11,
 # Adafruit_DHT.DHT22, or Adafruit_DHT.AM2302.
-sensor = Adafruit_DHT.DHT22
+sensor = Adafruit_DHT.DHT11
 
 # Example using a Beaglebone Black with DHT sensor
 # connected to pin P8_11.
