@@ -20,26 +20,40 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+
+#############################
+# Setting up Python Modules #
+#############################
 from time import sleep
 import Adafruit_DHT
 import sys
-
-def countdown(t): # in minutes
-    for i in range(t,0,-1):
-        print 'Values sent, now sleeping for %d minutes\r' % i,
-        sys.stdout.flush()
-        sleep(60)
-
-# Import Ubidots API, create objects
 from ubidots import ApiClient
 
-#Create an API object
-api = ApiClient("f4a44b0bbbfdc25207c5841ba91ada2c2bc9235c")
-
-#Create Variable objects - Humidity and Temperature
-#Edit these variables according to the room being measured
-humidity_value = api.get_variable("555a4777762542487814e5a6")
-temperature_value = api.get_variable("555a47c07625424af45b924e")
+##################################
+# Method for displaying the      #
+# countdown between measurements #
+# Pass the method the number     #
+# of minutes into variable 't'   #
+##################################
+def countdown(t):
+    for i in range(t,0,-1):
+        print 'Waiting for %d minutes\r' % i,
+        sys.stdout.flush()
+        sleep(60)
+try:
+	# Create an Ubidots object using API key
+	api = ApiClient("f4a44b0bbbfdc25207c5841ba91ada2c2bc9235c")
+	# Instantiate Variable objects - Humidity and Temperature
+	# Create new variables in Ubidots for each room
+	# Edit these variables according to the room being measured
+	humidity_value = api.get_variable("555a4777762542487814e5a6")
+	temperature_value = api.get_variable("555a47c07625424af45b924e")
+	print '\r\nSuccessfully connected to Ubidots.'
+	print '\r\nNow ready to take measurements:'
+except:
+	print '\r\nFailed to connect to Ubidots!'
+	print '\r\nIs there an Internet connection? Stopping program.'
+	sys.exit(0)
 
 # Sensor should be set to Adafruit_DHT.DHT11,
 # Adafruit_DHT.DHT22, or Adafruit_DHT.AM2302.
@@ -47,9 +61,9 @@ sensor = Adafruit_DHT.DHT22
 
 # Example using a Beaglebone Black with DHT sensor
 # connected to pin P8_11.
-#pin = 'P8_11'
+# pin = 'P8_11'
 
-# Example using a Raspberry Pi with DHT sensor
+# Using a Raspberry Pi with DHT sensor
 # connected to pin 23.
 pin = 23
 
@@ -62,7 +76,7 @@ humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
 # guarantee the timing of calls to read the sensor).  
 # If this happens try again!
 
-#Put measurements in a loop, wait 900 seconds (15 minutes) between sending data
+# Put measurements in a loop, wait 900 seconds (15 minutes) between sending data
 while humidity is not None:
 	humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
 	if humidity is not None and temperature is not None:
@@ -73,12 +87,16 @@ while humidity is not None:
 		send_humi = round(humidity,1)
 		print 'Sending temperature to Ubidots: ',send_temp
 		print 'Sending humidity to Ubidots: ',send_humi
-		#Send the values to Ubidots
-		humidity_value.save_value({'value':send_humi})
-		temperature_value.save_value({'value':send_temp})
+		# Send the values to Ubidots
+		# Using try : except to handle errors sending to Ubidots
+		try: 
+		   humidity_value.save_value({'value':send_humi})
+		   temperature_value.save_value({'value':send_temp})
+		except:
+		   print '\r\nFailed to send to Ubidots! Will try again.'
 	else:
 		print '\r\nFailed to get both readings! Will try again.'
-	#sleep(900)
+	# Call the countdown() method
 	countdown(15)
 else:
 	print '\r\nSensor malfunction. Stopping program!'
