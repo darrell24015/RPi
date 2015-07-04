@@ -1,7 +1,5 @@
-# RPi
-Repo for Raspberry Pi Projects
 
-### Notes on Pimoroni PiGlow
+# Notes on Pimoroni PiGlow
 After a recent Raspbian upgrade to my RPi Model B, the PiGlow
 would not work when running the Python code. Apparently the new kernel requires
 you make a change to the bootup config file to enable the i2c interface. 
