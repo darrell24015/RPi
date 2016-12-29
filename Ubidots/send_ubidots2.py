@@ -21,9 +21,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+<<<<<<< HEAD
 #####################################################
 # This file is for the downstairs Raspberry Pi Kali #
 #####################################################
+=======
+###########################################
+# This file is for downstairs RPi Kali    #
+###########################################
+>>>>>>> f6c879a272c2c83eeaeccd4b3a874b96f8b55b56
 
 #############################
 # Setting up Python Modules #

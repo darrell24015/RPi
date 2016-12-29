@@ -21,6 +21,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+###########################################
+# This file is for the upstairs RPi-APlus #
+###########################################
+
+
 #############################
 # Setting up Python Modules #
 #############################
@@ -57,7 +62,8 @@ except:
 
 # Sensor should be set to Adafruit_DHT.DHT11,
 # Adafruit_DHT.DHT22, or Adafruit_DHT.AM2302.
-sensor = Adafruit_DHT.DHT22
+# 10/09/15 Changing the upstairs sensor to DHT11, since DHT22 went bad on Humidity
+sensor = Adafruit_DHT.DHT11
 
 # Example using a Beaglebone Black with DHT sensor
 # connected to pin P8_11.
