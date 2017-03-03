@@ -21,15 +21,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-<<<<<<< HEAD
-#####################################################
-# This file is for the downstairs Raspberry Pi Kali #
-#####################################################
-=======
 ###########################################
 # This file is for downstairs RPi Kali    #
 ###########################################
->>>>>>> f6c879a272c2c83eeaeccd4b3a874b96f8b55b56
 
 #############################
 # Setting up Python Modules #
@@ -84,10 +78,10 @@ humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
 
 # Note that sometimes you won't get a reading and
 # the results will be null (because Linux can't
-# guarantee the timing of calls to read the sensor).  
+# guarantee the timing of calls to read the sensor).
 # If this happens try again!
 
-#Put measurements in a loop, wait 900 seconds (15 minutes) between sending data
+# Put measurements in a loop, wait 1800 seconds (30 minutes) between sending data
 while humidity is not None:
 	humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
 	if humidity is not None and temperature is not None:
@@ -108,6 +102,7 @@ while humidity is not None:
 	else:
 		print '\r\nFailed to get both readings! Will try again.'
 	# Call the countdown() method
-	countdown(15)
+	# 03/02/2017 Updated wait time to 30 minutes
+	countdown(30)
 else:
 	print '\r\nSensor malfunction. Stopping program!'
