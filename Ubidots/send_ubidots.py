@@ -39,6 +39,7 @@ from ubidots import ApiClient
 # countdown between measurements #
 # Pass the method the number     #
 # of minutes into variable 't'   #
+# Currently wait time is 30 min  #
 ##################################
 def countdown(t):
     for i in range(t,0,-1):
