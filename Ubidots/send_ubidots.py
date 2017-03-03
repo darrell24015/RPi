@@ -103,6 +103,7 @@ while humidity is not None:
 	else:
 		print '\r\nFailed to get both readings! Will try again.'
 	# Call the countdown() method
-	countdown(15)
+	# 03/02/2017 Changed wait time to 30 minutes
+	countdown(30)
 else:
 	print '\r\nSensor malfunction. Stopping program!'
